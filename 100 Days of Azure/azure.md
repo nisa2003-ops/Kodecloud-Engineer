@@ -12,4 +12,4 @@ The Nautilus DevOps team is strategically planning the migration of a portion of
 
 ## Azure Portal Walkthrough
 
-![Azure Portal Virtual Network Configuration](Kodecloud%20Engineer/public/azure1.png)
+![Azure Portal Virtual Network Configuration](public/azure1.png)
