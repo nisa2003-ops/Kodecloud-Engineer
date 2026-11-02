@@ -133,5 +133,50 @@ There exists a deployment named nginx-deployment; initiate a rollback to the pre
    ```bash
    kubectl rollout undo deployment/nginx-deployment
 ```
+### Task 7
+The Nautilus DevOps team is gearing up to deploy applications on a Kubernetes cluster for migration purposes. A team member has been tasked with creating a ReplicaSet outlined below:
+
+
+1.Create a ReplicaSet using nginx image with latest tag (ensure to specify as nginx:latest) and name it nginx-replicaset.
+
+2.Apply labels: app as nginx_app, type as front-end.
+
+3.Name the container nginx-container. Ensure the replica count is 4.
+
+---
+
+### Solution & Commands
+
+   ```bash
+   cat <<EOF > nginx-replicaset.yaml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-replicaset
+  labels:
+    app: nginx_app
+    type: front-end
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nginx_app
+      type: front-end
+  template:
+    metadata:
+      labels:
+        app: nginx_app
+        type: front-end
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:latest
+EOF
+```
+```bash
+      kubectl apply -f nginx-replicaset.yaml
+      kubectl get replicaset nginx-replicaset
+      kubectl get pods -l app=nginx_app,type=front-end
+```
 
 

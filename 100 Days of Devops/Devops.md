@@ -26,4 +26,19 @@ Create a user named siva on App Server 1 in Stratos Datacenter. Set the expiry d
    ssh tony@stapp01
    sudo useradd -e 2027-01-28 siva
    sudo chage -l siva
+```
+
+### Task 3
+Following security audits, the xFusionCorp Industries security team has rolled out new protocols, including the restriction of direct root SSH login.
+Your task is to disable direct SSH root login on all app servers within the Stratos Datacenter
+---
+
+### Solution & Commands
+
+**Connect to App Server 2 via SSH:**
+   ```bash
+   ssh tony@stapp01
+   sudo useradd -e 2027-01-28 siva
+   sudo chage -l siva
+```
 
