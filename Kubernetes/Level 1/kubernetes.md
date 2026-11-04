@@ -179,4 +179,49 @@ EOF
       kubectl get pods -l app=nginx_app,type=front-end
 ```
 
+### Task 8
+The Nautilus DevOps team is setting up recurring tasks on different schedules. Currently, they're developing scripts to be executed periodically. To kickstart the process, they're creating cron jobs in the Kubernetes cluster with placeholder commands. Follow the instructions below:
+
+1.Create a cronjob named xfusion.
+
+2.Set Its schedule to something like */5 * * * *. You can set any schedule for now.
+    
+3.Name the container cron-xfusion.
+    
+4.Utilize the nginx image with latest tag (specify as nginx:latest).
+    
+5.Execute the dummy command echo Welcome to xfusioncorp!.
+    
+6.Ensure the restart policy is OnFailure.
+
+---
+
+### Solution & Commands
+
+   ```bash
+   cat <<EOF > cronjob.yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: datacenter
+spec:
+  schedule: "*/11 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: cron-datacenter
+            image: httpd:latest
+            command:
+            - /bin/sh
+            - -c
+            - echo Welcome to xfusioncorp!
+          restartPolicy: OnFailure
+EOF
+```
+
+```bash
+      kubectl apply -f cronjob.yaml
+```
 
