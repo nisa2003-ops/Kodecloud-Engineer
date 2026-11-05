@@ -225,3 +225,42 @@ EOF
       kubectl apply -f cronjob.yaml
 ```
 
+### Task 9
+The Nautilus DevOps team is crafting jobs in the Kubernetes cluster. While they're developing actual scripts/commands, they're currently setting up templates and testing jobs with dummy commands. Please create a job template as per details given below:
+
+1.Create a job named countdown-devops.
+
+2.The spec template should be named countdown-devops (under metadata), and the container should be named container-countdown-devops
+
+3.Utilize image ubuntu with latest tag (ensure to specify as ubuntu:latest), and set the restart policy to Never.
+
+4.Execute the command sleep 5
+
+
+---
+
+### Solution & Commands
+
+   ```bash
+  cat <<EOF > job.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: countdown-devops
+spec:
+  template:
+    metadata:
+      name: countdown-devops
+    spec:
+      containers:
+      - name: container-countdown-devops
+        image: ubuntu:latest
+        command: ["sleep", "5"]
+      restartPolicy: Never
+EOF
+```
+
+```bash
+      kubectl apply -f job.yaml
+```
+

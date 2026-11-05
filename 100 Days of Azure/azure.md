@@ -28,3 +28,18 @@ For this task, allocate a Public IP address, name it as xfusion-pip.
 
 ## Azure Portal Walkthrough
 ![Azure Portal Virtual Network Configuration](public/azure3.png)
+
+## Question / Problem Statement
+
+An existing VM named devops-vm and a managed disk named devops-disk already exist in the East US region.
+
+Attach the disk devops-disk to the VM devops-vm as a data disk.
+
+Ensure the disk is attached to the VM devops-vm.
+
+Make sure that the virtual machine initialization has been completed before submitting this task.
+
+---
+
+## Azure Portal Walkthrough
+![Azure Portal Virtual Network Configuration](public/azure4.png)
