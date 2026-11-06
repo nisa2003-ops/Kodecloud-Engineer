@@ -43,3 +43,20 @@ Make sure that the virtual machine initialization has been completed before subm
 
 ## Azure Portal Walkthrough
 ![Azure Portal Virtual Network Configuration](public/azure4.png)
+
+## Question / Problem Statement
+
+The devops DevOps team is migrating services to Azure. They are breaking down tasks to ensure better control and optimization. You are tasked with attaching an existing network interface (NIC) to a virtual machine (VM).
+
+An existing VM named devops-vm and a network interface named devops-nic already exist in the centralus region.
+
+Attach the network interface devops-nic to the VM devops-vm.
+
+Ensure the NIC's status is attached before submitting the task.
+
+Make sure that the virtual machine initialization has been completed before submitting this task.
+
+---
+
+## Azure Portal Walkthrough
+![Azure Portal Virtual Network Configuration](public/azure4.png)
