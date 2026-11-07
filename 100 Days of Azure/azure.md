@@ -59,4 +59,19 @@ Make sure that the virtual machine initialization has been completed before subm
 ---
 
 ## Azure Portal Walkthrough
-![Azure Portal Virtual Network Configuration](public/azure4.png)
+![Azure Portal Virtual Network Configuration](public/azure5.png)
+
+## Question / Problem Statement
+
+The Nautilus DevOps team has already set up a virtual machine and allocated a public IP address. The final task is to attach this public IP to the VM's network interface card (NIC).
+
+An existing VM named xfusion-vm-pip and a public IP address named xfusion-pip already exist.
+
+Attach the public IP xfusion-pip to the network interface of the VM xfusion-vm-pip.
+
+Make sure the VM is properly assigned the public IP.
+
+---
+
+## Azure Portal Walkthrough
+![Azure Portal Virtual Network Configuration](public/azure6.png)
