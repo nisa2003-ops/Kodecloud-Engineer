@@ -318,3 +318,124 @@ kubectl run time-check --image=busybox:latest -n devops \
   }'
 ```
 
+### Task 11
+A junior DevOps team member encountered difficulties deploying a stack on the Kubernetes cluster. The pod fails to start, presenting errors. Let's troubleshoot and rectify the issue promptly.
+
+1. There is a pod named webserver, and the container within it is named nginx-container, its utilizing the nginx:latest image.
+2. Additionally, there's a sidecar container named sidecar-container using the ubuntu:latest image.
+   Identify and address the issue to ensure the pod is in the running state and the application is accessible.
+
+
+### Solution & Commands
+
+   ```bash
+      kubectl describe pod webserver
+      kubectl set image pod/webserver nginx-container=nginx:latest
+      kubectl get pods
+      kubectl describe pod webserver
+      kubectl get svc
+      curl http://<node-ip>:<node-port>
+```
+
+### Task 12
+An application deployed on the Kubernetes cluster requires an update with new features developed by the Nautilus application development team. The existing setup includes a deployment named nginx-deployment and a service named nginx-service. Below are the necessary changes to be implemented without deleting the deployment and service:
+
+1.) Modify the service nodeport from 30008 to 32165
+
+2.) Change the replicas count from 1 to 5
+
+3.) Update the image from nginx:1.18 to nginx:latest
+
+
+### Solution & Commands
+
+   ```bash
+      kubectl get deployment nginx-deployment
+      kubectl get svc nginx-service
+      
+      kubectl patch svc nginx-service --type='json' -p '[{"op":"replace","path":"/spec/ports/0/nodePort","value":32165}]'
+      
+      kubectl patch deployment nginx-deployment --type='json' -p '[{"op":"replace","path":"/spec/replicas","value":5},{"op":"replace","path":"/spec/template/spec/containers/0/image","value":"nginx:latest"}]'
+      
+      kubectl rollout status deployment/nginx-deployment
+```
+
+### Task 13
+The Nautilus DevOps team has already deployed a ReplicaSet to host an application that requires a highly available infrastructure. Your task is to expose the application running in the existing ReplicaSet by creating a Kubernetes NodePort Service.
+
+Follow the specifications below to create the Service and ensure the application pods are accessible:
+
+A ReplicaSet named nginx-replicaset is already running in the cluster.
+
+The pods managed by the ReplicaSet use the following labels:
+Assign labels app as nginx_app, and type as front-end.
+
+Create a NodePort Service named nginx-service to expose the application.
+
+Set the NodePort to 30080.
+
+Expose port 80 of the application.
+
+
+### Solution & Commands
+
+   ```bash
+      kubectl expose rs nginx-replicaset --name=nginx-service --type=NodePort --port=80 --target-port=80
+      
+      kubectl patch svc nginx-service -p '{"spec":{"selector":{"app":"nginx_app","type":"front-end"},"ports":[{"port":80,"targetPort":80,"nodePort":30080}]}}'
+      
+      kubectl get svc nginx-service
+      kubectl get endpoints nginx-service
+```
+
+### Task 14
+We encountered an issue with our Nginx and PHP-FPM setup on the Kubernetes cluster this morning, which halted its functionality. Investigate and rectify the issue:
+
+
+The pod name is nginx-phpfpm and configmap name is nginx-config. Identify and fix the problem.
+
+Once resolved, copy /home/thor/index.php file from the jump host to the nginx-container within the nginx document root. After this, you should be able to access the website using Website button on the top bar.
+
+how to do this step by step kodecloud engineer
+
+
+### Solution & Commands
+
+   ```bash
+      kubectl apply -f - << 'EOF'
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: default
+data:
+  nginx.conf: |
+    events {
+    }
+    http {
+      server {
+        listen 8099 default_server;
+        listen [::]:8099 default_server;
+
+        root /usr/share/nginx/html;
+        index index.html index.htm index.php;
+        server_name _;
+
+        location / {
+          try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+          include fastcgi_params;
+          fastcgi_param REQUEST_METHOD $request_method;
+          fastcgi_param SCRIPT_FILENAME /var/www/html$fastcgi_script_name;
+          fastcgi_pass 127.0.0.1:9000;
+        }
+      }
+    }
+EOF
+
+kubectl exec nginx-phpfpm -c nginx-container -- nginx -s reload
+
+kubectl exec nginx-phpfpm -c nginx-container -- curl -i http://localhost:8099/index.php
+```
