@@ -75,3 +75,16 @@ Make sure the VM is properly assigned the public IP.
 
 ## Azure Portal Walkthrough
 ![Azure Portal Virtual Network Configuration](public/azure6.png)
+
+## Question / Problem Statement
+
+The Nautilus DevOps team is migrating a portion of its infrastructure to Azure. During the migration, they have created several virtual machines (VMs) in different regions. The team identified one VM that is experiencing increased workload demands and requires additional compute resources to maintain optimal performance.
+
+1) Change the VM size from Standard_B1s to Standard_B2s for the virtual machine named datacenter-vm.
+
+2) Ensure the VM is in the running state after the size change is complete.
+
+---
+
+## Azure Portal Walkthrough
+![Azure Portal Virtual Network Configuration](public/azure7.png)
