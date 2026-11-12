@@ -88,3 +88,15 @@ The Nautilus DevOps team is migrating a portion of its infrastructure to Azure. 
 
 ## Azure Portal Walkthrough
 ![Azure Portal Virtual Network Configuration](public/azure7.png)
+
+## Question / Problem Statement
+
+The Nautilus DevOps team is migrating a portion of their infrastructure to Azure. During the migration, they have created several virtual machines (VMs) in different regions. The team has identified one VM that is not tagged properly so they decided to tag it as needed.
+
+Add the tag Environment=dev to the virtual machine named datacenter-vm.
+
+
+---
+
+## Azure Portal Walkthrough
+![Azure Portal Virtual Network Configuration](public/azure8.png)
