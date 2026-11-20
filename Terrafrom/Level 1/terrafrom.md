@@ -218,3 +218,47 @@ resource "aws_vpc" "xfusion_vpc" {
    ```bash
    terraform apply -auto-approve
    ```
+
+## Problem Statement 05
+
+The Nautilus DevOps team is strategically planning the migration of a portion of their infrastructure to the AWS cloud. Acknowledging the magnitude of this endeavor, they have chosen to tackle the migration incrementally rather than as a single, massive transition. Their approach involves creating Virtual Private Clouds (VPCs) as the initial step, as they will be provisioning various services under different VPCs.
+
+For this task, create a VPC named xfusion-vpc in the us-east-1 region with the Amazon-provided IPv6 CIDR block using terraform.
+
+The Terraform working directory is /home/bob/terraform. Create the main.tf file (do not create a different .tf file) to accomplish this task.
+
+---
+
+## Solution
+
+### File Path: `/home/bob/terraform/main.tf`
+
+```hcl
+resource "aws_vpc" "xfusion_vpc" {
+  cidr_block                       = "10.0.0.0/16"
+  assign_generated_ipv6_cidr_block = true
+
+  tags = {
+    Name = "xfusion-vpc"
+  }
+}
+```
+
+---
+
+## Steps to Execute
+
+1. **Navigate to the Terraform working directory:**
+   ```bash
+   cd /home/bob/terraform
+   ```
+
+2. **Initialize Terraform:**
+   ```bash
+   terraform init
+   ```
+
+3. **Apply the configuration:**
+   ```bash
+   terraform apply -auto-approve
+   ```
